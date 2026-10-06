@@ -1,0 +1,91 @@
+{
+  "skill_name": "ny-attorney-ad-compliance",
+  "evals": [
+    {
+      "id": 1,
+      "name": "homepage-hero-multiple-violations",
+      "prompt": "Can you check this homepage copy for our NYC litigation client before it goes live?\n\n\"New York's #1 Business Litigation Firm. Board-certified trial lawyers with 40+ years of combined experience. We win. Recently secured a $4.2M verdict for a minority shareholder. Call now — before it's too late.\"",
+      "expected_output": "Do not publish verdict; findings table with Block for 'board-certified' (no certifier named, 7.1(c)) and 'We win' (outcome guarantee), Revise for '#1', 'combined experience', the unqualified verdict, and the urgency line; compliant rewrites with [brackets] for missing facts; facts-to-confirm list; required-elements check flags missing contact info.",
+      "files": [],
+      "assertions": [
+        "Verdict is 'Do not publish' (or equivalent ⛔)",
+        "Flags 'Board-certified' under Rule 7.1(c) as requiring a named certifying organization",
+        "Flags 'We win' as an outcome guarantee / unjustified expectation",
+        "Flags '#1' as an unsubstantiated superlative/comparison",
+        "Recommends context (year, forum) and a voluntary 'Prior results' disclaimer for the $4.2M verdict without calling the disclaimer mandatory",
+        "Does NOT state that an 'Attorney Advertising' label is required",
+        "Rewrites use [brackets] instead of inventing facts",
+        "Notes missing name/contact info under 7.1(d)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "gbp-negative-review-reply",
+      "prompt": "Draft a reply to this Google review for Ainsworth Gorkin and check it's compliant. Review: '1 star. They lost my case against my former business partner and charged me $30k.' Our draft reply: 'We're sorry you feel that way, but as you know the court ruled against you because you didn't have a written operating agreement, which we advised you to get in 2023. Our fees were disclosed upfront.'",
+      "expected_output": "Block the draft for revealing confidential information (Rule 1.6): confirms representation, discusses facts, advice, and fees. Explain 1.6(b)(5) self-defense exception doesn't justify a public reply. Provide a compliant reply that doesn't confirm the reviewer was a client and invites offline contact.",
+      "files": [],
+      "assertions": [
+        "Identifies Rule 1.6 confidentiality as the core problem",
+        "Explains that confirming the reviewer was a client and discussing advice/facts/fees is not permitted",
+        "Addresses the self-defense exception (1.6(b)(5)) and why a public review reply rarely qualifies",
+        "Provides a replacement reply with no matter details that invites offline contact",
+        "Verdict is 'Do not publish' for the original draft"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "outreach-script-solicitation",
+      "prompt": "Our BD guy wants to cold-call owners of companies that were just named as defendants in commercial lawsuits filed in Kings County, offering our defense services. We'd also call GCs we met at an ACC event last month. Is this OK?",
+      "expected_output": "Distinguishes: calls to GCs met at an event fall within 7.3(b)(2)/(3) exceptions; cold calls to newly named defendants are live solicitation of persons known to need services in a particular matter — allowed only if they routinely use litigation services for business purposes (7.3(b)(3)), case-by-case; recommends written outreach as safer; flags that a non-lawyer BD rep doing solicitation raises Judiciary Law §§479/482; notes 7.3(c) stop-on-request.",
+      "files": [],
+      "assertions": [
+        "Applies Rule 7.3(a) definition of solicitation (specific person, particular matter)",
+        "Identifies the GC calls as permissible under the prior relationship and/or routine-business-user exceptions",
+        "Treats cold calls to named defendants as live solicitation needing the 7.3(b)(3) routine-user exception, not a blanket yes",
+        "Recommends written outreach (email/letter) as a safer alternative subject to 7.1 and 7.3(c)",
+        "Flags Judiciary Law §479/§482 risk for a non-lawyer BD rep soliciting",
+        "Does NOT mention the obsolete solicitation filing requirement as current"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "obsolete-requirement-question",
+      "prompt": "Our old agency says every page of a NY law firm site needs 'Attorney Advertising' at the top and every case result needs 'Prior results do not guarantee a similar outcome.' Do we need to add those to the Ainsworth Gorkin site?",
+      "expected_output": "Explains both requirements were eliminated effective June 1, 2026; keeping them is harmless; recommends the prior-results disclaimer voluntarily near case results because it reduces misleading-expectation risk under 7.1(a); notes 7.1(d) attribution is what is required now.",
+      "files": [],
+      "assertions": [
+        "States the 'Attorney Advertising' label is no longer required as of June 1, 2026",
+        "States the 'Prior results' disclaimer is no longer mandatory",
+        "Recommends the prior-results disclaimer voluntarily near case results",
+        "Mentions the current attribution requirement (7.1(d): name + contact info)"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "referral-program",
+      "prompt": "We want to launch a client referral program: $250 Amazon gift card for every referred client who signs a retainer, plus a $500 'finder's fee' to accountants who send us business. Write the landing page copy.",
+      "expected_output": "Declines to write copy for the program as designed: both elements violate Rule 7.2(a); flags Judiciary Law §482 risk; explains fee-sharing only under 1.5(g) with lawyers; offers compliant alternatives (thank-you notes, client appreciation events, newsletters, informal reciprocal referral relationships without payment) and writes copy for a compliant alternative if useful.",
+      "files": [],
+      "assertions": [
+        "Identifies both the gift card and the finder's fee as violations of Rule 7.2(a)",
+        "Does not produce landing page copy promoting the paid referral program",
+        "Offers compliant alternatives that are not conditioned on referrals",
+        "Mentions Rule 5.8 or informal reciprocal referrals for accountants without payment"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "trade-name-and-domain",
+      "prompt": "Partners are thinking about rebranding to 'Brooklyn Business Legal Aid' with the domain winmybusinesscase.com and phone 1-844-WIN-SUIT. Thoughts?",
+      "expected_output": "Block 'Legal Aid' for a private firm under 7.5(b)(2)(i); flag domain and vanity number as implying results — misleading under 7.5(b)(1)(ii) and 7.1(a), and 7.5(b)(2)(vi) limits vanity numbers to mottos that don't otherwise violate the rules; note trade names are allowed post-2020 if not misleading (Op. 1207); offer alternative names; note entity designator (PLLC).",
+      "files": [],
+      "assertions": [
+        "Blocks 'Legal Aid' under Rule 7.5(b)(2)(i)",
+        "Flags the results-implying domain as misleading under 7.5(b)(1)(ii)/7.1(a)",
+        "Flags the vanity phone number with reference to 7.5(b)(2)(vi)",
+        "Confirms trade names are permitted if not misleading (NYSBA Op. 1207)",
+        "Suggests compliant alternative names without inventing facts"
+      ]
+    }
+  ]
+}
